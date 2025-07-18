@@ -6,113 +6,13 @@ import 'dart:math';
 /// This is the main entry point for the Dart project.
 
 void main(List<String> arguments) {
-  print("=== Dart Full List Framework ===");
-
-  // Simple list operations
-  List str = ["mariam", "ahmed", "ali"];
-  print("Length: ${str.length}");
-  print("Is empty: ${str.isEmpty}");
-  print("Reversed: ${str.reversed.toList()}");
-  print("First item: ${str[0]}");
-  print("Index of 'mariam': ${str.indexOf("mariam")}");
-
-  // Single element list
-  List strsingle = ["ali"];
-  print("Single value: ${strsingle.single}");
-
-  // Constant list
-  const List constantName = ["ahmed&mariam"];
-  print("Constant list: $constantName");
-
-  // Adding items
-  List adding = ["ahmed", "mariam", "azza", "rania"];
-  adding.add("ali");
-  adding.addAll(["sara", "mona"]);
-  adding.insertAll(0, ["Yara", "Hassan"]);
-  print("List after additions: $adding");
-
-  // Iteration using forEach
-  adding.forEach((name) {
-    print("Hello $name");
-  });
-
-  // Map to new values
-  print("Mapped to upper case: ${adding.map((e) => "Welcome ${e.toUpperCase()}").toList()}");
-
-  // Removing elements
-  adding.removeAt(0);
-  adding.removeRange(0, 2);
-  adding.replaceRange(3, 5, ["ahmed", "ahmed&mariam"]);
-  print("After remove/replace: $adding");
-
-  // 3D list
-  List _3D = [
-    [
-      [1, 2, 3],
-      [4, 5, 6],
-      [7, 8, 9],
-    ],
-    [
-      [74, 77, 35],
-      [41, 52, 63],
-      [74, 28, 96],
-    ],
-  ];
-  print("3D List: $_3D");
-  print("Element [1][2][1]: ${_3D[1][2][1]}");
-
-  // Shape detection
-  int depth = _3D.length;
-  int rows = _3D[0].length;
-  int cols = _3D[0][0].length;
-  print("Shape: [$depth][$rows][$cols]");
-
-  // List dimension detection
-  void printDimension(dynamic list) {
-    if (list is List) {
-      if (list.isNotEmpty && list[0] is List) {
-        if (list[0].isNotEmpty && list[0][0] is List) {
-          print("3D List");
-        } else {
-          print("2D List");
-        }
-      } else {
-        print("1D List");
-      }
-    } else {
-      print("Not a List");
-    }
-  }
-
-  print("Dimension Check:");
-  printDimension(str);
-  printDimension([[1, 2], [3, 4]]);
-  printDimension(_3D);
-
-  // Merge two lists
-  List l1 = ["ahmed"];
-  List l2 = ["mariam"];
-  List merged = [...l1, ...l2];
-  print("Merged List: $merged");
-
-  // Filter list
-  List number = [1, 2, 3, 4, 5, 6, 7];
-  var filtered = number.where((element) => element >= 3);
-  print("Filtered >=3: ${filtered.toList()}");
-
-  // Extra: sort and reverse
-  List unsorted = [9, 2, 5, 1, 7];
-  unsorted.sort();
-  print("Sorted: $unsorted");
-  print("Reversed: ${unsorted.reversed.toList()}");
 
 }
 
 
-
 ////////////////////////////////////////////////////////////////////////////////
 
-/// Application one
+/// Application 1
 
 // void main(List<String> arguments) {
 //   print("=== Dart Full Project ===");
@@ -296,3 +196,189 @@ void main(List<String> arguments) {
 //     print("Hi, I am $name and I am $age years old.");
 //   }
 // }
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+/// Applicatiom  2
+
+// void main(List<String> arguments) {
+//   print("=== Dart Full List Framework ===");
+
+//   // Simple list operations
+//   List str = ["mariam", "ahmed", "ali"];
+//   print("Length: ${str.length}");
+//   print("Is empty: ${str.isEmpty}");
+//   print("Reversed: ${str.reversed.toList()}");
+//   print("First item: ${str[0]}");
+//   print("Index of 'mariam': ${str.indexOf("mariam")}");
+
+//   // Single element list
+//   List strsingle = ["ali"];
+//   print("Single value: ${strsingle.single}");
+
+//   // Constant list
+//   const List constantName = ["ahmed&mariam"];
+//   print("Constant list: $constantName");
+
+//   // Adding items
+//   List adding = ["ahmed", "mariam", "azza", "rania"];
+//   adding.add("ali");
+//   adding.addAll(["sara", "mona"]);
+//   adding.insertAll(0, ["Yara", "Hassan"]);
+//   print("List after additions: $adding");
+
+//   // Iteration using forEach
+//   adding.forEach((name) {
+//     print("Hello $name");
+//   });
+
+//   // Map to new values
+//   print("Mapped to upper case: ${adding.map((e) => "Welcome ${e.toUpperCase()}").toList()}");
+
+//   // Removing elements
+//   adding.removeAt(0);
+//   adding.removeRange(0, 2);
+//   adding.replaceRange(3, 5, ["ahmed", "ahmed&mariam"]);
+//   print("After remove/replace: $adding");
+
+//   // 3D list
+//   List _3D = [
+//     [
+//       [1, 2, 3],
+//       [4, 5, 6],
+//       [7, 8, 9],
+//     ],
+//     [
+//       [74, 77, 35],
+//       [41, 52, 63],
+//       [74, 28, 96],
+//     ],
+//   ];
+//   print("3D List: $_3D");
+//   print("Element [1][2][1]: ${_3D[1][2][1]}");
+
+//   // Shape detection
+//   int depth = _3D.length;
+//   int rows = _3D[0].length;
+//   int cols = _3D[0][0].length;
+//   print("Shape: [$depth][$rows][$cols]");
+
+//   // List dimension detection
+//   void printDimension(dynamic list) {
+//     if (list is List) {
+//       if (list.isNotEmpty && list[0] is List) {
+//         if (list[0].isNotEmpty && list[0][0] is List) {
+//           print("3D List");
+//         } else {
+//           print("2D List");
+//         }
+//       } else {
+//         print("1D List");
+//       }
+//     } else {
+//       print("Not a List");
+//     }
+//   }
+
+//   print("Dimension Check:");
+//   printDimension(str);
+//   printDimension([[1, 2], [3, 4]]);
+//   printDimension(_3D);
+
+//   // Merge two lists
+//   List l1 = ["ahmed"];
+//   List l2 = ["mariam"];
+//   List merged = [...l1, ...l2];
+//   print("Merged List: $merged");
+
+//   // Filter list
+//   List number = [1, 2, 3, 4, 5, 6, 7];
+//   var filtered = number.where((element) => element >= 3);
+//   print("Filtered >=3: ${filtered.toList()}");
+
+//   // Extra: sort and reverse
+//   List unsorted = [9, 2, 5, 1, 7];
+//   unsorted.sort();
+//   print("Sorted: $unsorted");
+//   print("Reversed: ${unsorted.reversed.toList()}");
+
+// }
+
+////////////////////////////////////////////////////////////////////////////////
+
+/// Applicatiom  3
+
+  // print("=== Dart Full Set Project ===");
+
+  // // Creating a Set
+  // Set<String> names = {"Ahmed", "Mariam", "Ali", "Ahmed"};
+  // print("Initial Set: $names"); // Note: "Ahmed" will appear only once
+
+  // print(names.elementAt(0));
+
+  // // Checking length
+  // print("Length: ${names.length}");
+
+  // // Checking if set is empty
+  // print("Is Empty: ${names.isEmpty}");
+  // print("Is Not Empty: ${names.isNotEmpty}");
+
+  // // Adding elements
+  // names.add("Sara");
+  // print("After Adding Sara: $names");
+
+  // names.addAll(["Rania", "Ali", "Mona"]);
+  // print("After Adding Multiple: $names");
+
+  // // Removing elements
+  // names.remove("Ali");
+  // print("After Removing Ali: $names");
+
+  // // Containment
+  // print("Contains Mariam: ${names.contains("Mariam")}");
+  // print("Contains Ahmed: ${names.contains("Ahmed")}");
+
+  // // Looping
+  // print("Printing each name:");
+  // for (var name in names) {
+  //   print("-> $name");
+  // }
+
+  // // Using forEach
+  // print("Using forEach:");
+  // names.forEach((name) => print("Hello $name"));
+
+  // // Set operations
+  // Set<String> setA = {"Ahmed", "Ali", "Mariam"};
+  // Set<String> setB = {"Mariam", "Sara", "Yara"};
+
+  // print("Set A: $setA");
+  // print("Set B: $setB");
+
+  // print("Union: ${setA.union(setB)}"); // All unique elements
+  // print("Intersection: ${setA.intersection(setB)}"); // Common elements
+  // print("Difference A - B: ${setA.difference(setB)}"); // Only in A
+
+  // // Converting Set to List
+  // List<String> nameList = names.toList();
+  // print("Converted Set to List: $nameList");
+
+  // // Converting List to Set (for removing duplicates)
+  // List<String> duplicatedList = ["Ali", "Ali", "Ahmed", "Ahmed", "Sara"];
+  // Set<String> uniqueNames = Set.from(duplicatedList);
+  // print("Unique from List: $uniqueNames");
+
+  // // Creating empty set with proper type
+  // var emptySet = <int>{};
+  // emptySet.add(10);
+  // emptySet.add(20);
+  // print("Empty int Set filled: $emptySet");
+
+  // // Set with numbers: check even/odd
+  // Set<int> numbers = {1, 2, 3, 4, 5, 6};
+  // var even = numbers.where((n) => n.isEven);
+  // print("Even Numbers: $even");
+
+  // var odd = numbers.where((n) => n.isOdd);
+  // print("Odd Numbers: $odd");
