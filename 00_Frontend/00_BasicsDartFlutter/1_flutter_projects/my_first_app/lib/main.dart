@@ -1,109 +1,171 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const TaskManagerApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class TaskManagerApp extends StatelessWidget {
+  const TaskManagerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Row(
-            children: [
-              Image.asset(
-                'assets/pizza-512x512.png', // ✅ Local asset image
-                height: 40,
-              ),
-              const SizedBox(width: 12),
-              const Text(
-                "Pizza Nor",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 28.0,
-                ),
-              ),
-            ],
+      title: 'Task Manager',
+      theme: ThemeData(
+        primarySwatch: Colors.indigo,
+        useMaterial3: true,
+      ),
+      home: const TaskListScreen(),
+    );
+  }
+}
+
+class TaskListScreen extends StatefulWidget {
+  const TaskListScreen({super.key});
+
+  @override
+  State<TaskListScreen> createState() => _TaskListScreenState();
+}
+
+class _TaskListScreenState extends State<TaskListScreen> {
+  final List<String> _tasks = [];
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _addTask(String task) {
+    setState(() {
+      _tasks.add(task);
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Task "$task" added')),
+    );
+  }
+
+  void _showAddTaskDialog() {
+    _controller.clear();
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Add New Task'),
+        content: TextFormField(
+          controller: _controller,
+          decoration: const InputDecoration(
+            hintText: 'Enter task',
+            border: OutlineInputBorder(),
           ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Task cannot be empty';
+            }
+            return null;
+          },
         ),
-        body: SingleChildScrollView( // ✅ Makes all content scrollable
-          child: Column(
-            children: [
-              Container(
-                width: 300,
-                height: 200,
-                padding: const EdgeInsets.all(20.0),
-                margin: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  color: Colors.orange.shade100,
-                  border: Border.all(
-                    color: Colors.deepOrange,
-                    width: 7.0,
-                  ),
-                  borderRadius: BorderRadius.circular(20.0),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black38,
-                      blurRadius: 8,
-                      offset: Offset(10, 10),
-                      spreadRadius: 2,
-                    ),
-                    BoxShadow(
-                      color: Colors.brown,
-                      blurRadius: 8,
-                      offset: Offset(-10, -10),
-                      spreadRadius: 2,
-                    ),
-                  ],
-                  gradient: const LinearGradient(
-                    colors: [Colors.orange, Colors.deepOrange],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-                alignment: Alignment.center,
-                child: const Text(
-                  "Welcome to Pizza Nor!",
-                  style: TextStyle(
-                    fontSize: 22,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 1.5,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
-                child: Text(
-                  "Choose your toppings:",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Wrap( // ✅ Shows a responsive group of elements
-                  spacing: 12,
-                  runSpacing: 12,
-                  children: List.generate(50, (index) {
-                    return Chip(
-                      label: Text("Topping ${index + 1}"),
-                      backgroundColor: Colors.orange.shade200,
-                    );
-                  }),
-                ),
-              ),
-              const SizedBox(height: 40),
-              const Text(
-                "🍕 Pizza made with love!",
-                style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
-              ),
-              const SizedBox(height: 60),
-            ],
+        actions: [
+          TextButton(
+            onPressed: () {
+              final task = _controller.text.trim();
+              if (task.isNotEmpty) {
+                _addTask(task);
+              }
+              Navigator.pop(context);
+            },
+            child: const Text('Add'),
           ),
+        ],
+      ),
+    );
+  }
+
+  void _navigateToDetails(String task) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => TaskDetailScreen(task: task),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: const Drawer(child: Center(child: Text('Drawer menu here'))),
+      appBar: AppBar(title: const Text('Task Manager')),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Tasks'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+        ],
+      ),
+      body: Scrollbar(
+        child: ListView.builder(
+          itemCount: _tasks.length,
+          itemBuilder: (_, index) {
+            return GestureDetector(
+              onTap: () => _navigateToDetails(_tasks[index]),
+              child: TaskTile(task: _tasks[index]),
+            );
+          },
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _showAddTaskDialog,
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+// ✅ Reusable Task tile widget
+class TaskTile extends StatelessWidget {
+  final String task;
+  const TaskTile({super.key, required this.task});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(task),
+      trailing: PopupMenuButton<String>(
+        onSelected: (value) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$value on "$task"')));
+        },
+        itemBuilder: (context) => [
+          const PopupMenuItem(value: 'Edit', child: Text('Edit')),
+          const PopupMenuItem(value: 'Delete', child: Text('Delete')),
+        ],
+      ),
+    );
+  }
+}
+
+// ✅ Navigation target screen
+class TaskDetailScreen extends StatelessWidget {
+  final String task;
+  const TaskDetailScreen({super.key, required this.task});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Task Detail')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.task_alt, size: 60, color: Colors.teal),
+            const SizedBox(height: 20),
+            Text('Task: $task', style: Theme.of(context).textTheme.headlineSmall),
+          ],
         ),
       ),
     );
