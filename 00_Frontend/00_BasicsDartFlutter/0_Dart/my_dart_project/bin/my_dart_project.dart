@@ -6,8 +6,9 @@ import 'dart:math';
 /// This is the main entry point for the Dart project.
 
 void main(List<String> arguments) {
-
+  
 }
+
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -382,3 +383,182 @@ void main(List<String> arguments) {
 
   // var odd = numbers.where((n) => n.isOdd);
   // print("Odd Numbers: $odd");
+  // 
+  
+////////////////////////////////////////////////////////////////////////////////
+
+/// Applicatiom  4
+
+  // print("=== Dart Full Map Project ===");
+
+  // // Creating a map with keys and values
+  // Map<String, String> user = {
+  //   "name": "Ahmed",
+  //   "city": "Cairo",
+  //   "job": "Engineer",
+  // };
+  // print("User Map: $user");
+
+  // // Accessing values
+  // print("Name: ${user["name"]}");
+  // print("City: ${user["city"]}");
+
+  // // Adding a new key-value pair
+  // user["age"] = "26";
+  // print("After adding age: $user");
+
+  // // Updating a value
+  // user["city"] = "Alexandria";
+  // print("After updating city: $user");
+
+  // // Removing a key
+  // user.remove("job");
+  // print("After removing job: $user");
+
+  // // Check if key/value exists
+  // print("Contains key 'name': ${user.containsKey("name")}");
+  // print("Contains value 'Ahmed': ${user.containsValue("Ahmed")}");
+
+  // // Getting all keys and values
+  // print("Keys: ${user.keys}");
+  // print("Values: ${user.values}");
+
+  // // Iterating through a map
+  // print("Looping through entries:");
+  // user.forEach((key, value) {
+  //   print("$key -> $value");
+  // });
+
+  // // Map with different data types
+  // Map<String, dynamic> mixed = {
+  //   "name": "Mariam",
+  //   "age": 25,
+  //   "married": false,
+  // };
+  // print("Mixed Map: $mixed");
+
+  // // Creating an empty map
+  // Map<String, int> scores = {};
+  // scores["Ali"] = 90;
+  // scores["Sara"] = 88;
+  // print("Scores: $scores");
+
+  // // Get value with default fallback
+  // print("Score of Ahmed: ${scores["Ahmed"] ?? "Not Found"}");
+
+  // // Using map entries
+  // for (var entry in scores.entries) {
+  //   print("${entry.key} scored ${entry.value}");
+  // }
+
+  // // Converting list to map
+  // List<String> keys = ["a", "b", "c"];
+  // List<int> values = [1, 2, 3];
+  // Map<String, int> newMap = Map.fromIterables(keys, values);
+  // print("New map from two lists: $newMap");
+
+  // // Nested Map
+  // Map<String, Map<String, dynamic>> users = {
+  //   "user1": {"name": "Ali", "age": 22},
+  //   "user2": {"name": "Nora", "age": 28},
+  // };
+  // print("Nested Users Map: $users");
+  // print("Name of user1: ${users["user1"]?["name"]}");
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+/// Application 5
+
+//   print("=== Dart Functions Examples ===");
+
+//   // 1. Simple function call
+//   greet();
+
+//   // 2. Function with parameters
+//   greetUser("Ahmed");
+
+//   // 3. Function with return value
+//   int sum = add(5, 10);
+//   print("Sum: $sum");
+
+//   // 4. Arrow function
+//   print("Square of 4: ${square(4)}");
+
+//   // 5. Function with optional positional parameter
+//   describeUser("Mariam");
+//   describeUser("Mariam", 25);
+
+//   // 6. Function with named parameters
+//   printUserInfo(name: "Ali", age: 30);
+//   printUserInfo(age: 22, name: "Sara");
+
+//   // 7. Named parameters with default values
+//   greetPerson(name: "Mohamed");
+//   greetPerson();
+//   greetPersonQuestion(name: "Mariam");
+//   // 8. Anonymous function
+//   var list = [1, 2, 3];
+//   list.forEach((num) {
+//     print("Item: $num");
+//   });
+
+//   // 9. Higher-order function (takes a function as parameter)
+//   executeFunction(multiply, 3, 4);
+
+//   // 10. Returning function from another function
+//   var triple = makeMultiplier(3);
+//   print("Triple of 5: ${triple(5)}");
+// }
+
+// // Function with no parameters or return
+// void greet() {
+//   print("Hello, welcome to Dart!");
+// }
+
+// // Function with parameters
+// void greetUser(String name) {
+//   print("Hello, $name!");
+// }
+
+// // Function with return value
+// int add(int a, int b) {
+//   return a + b;
+// }
+
+// // Arrow function
+// int square(int x) => x * x;
+
+// // Optional positional parameter
+// void describeUser(String name, [int? age]) {
+//   print("Name: $name");
+//   if (age != null) print("Age: $age");
+// }
+
+// // Named parameters
+// void printUserInfo({required String name, required int age}) {
+//   print("User: $name, Age: $age");
+// }
+
+// // Named parameters with default values
+// void greetPerson({String name = "Guest"}) {
+//   print("Hello, $name!");
+// }
+
+// // Named parameters with default values
+// void greetPersonQuestion({String? name}) {
+//   print("Hello, $name!");
+// }
+
+// // Higher-order function: takes function as argument
+// void executeFunction(int Function(int, int) op, int a, int b) {
+//   print("Result: ${op(a, b)}");
+// }
+
+// int multiply(int a, int b) => a * b;
+
+// // Returning a function
+// Function makeMultiplier(int factor) {
+//   return (int x) => x * factor;
+// }
+
